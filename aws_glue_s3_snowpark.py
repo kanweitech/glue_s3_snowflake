@@ -5,7 +5,7 @@ from io import BytesIO
 
 # Github repository details
 GITHUB_REPO = "https://api.github.com/repos/{owner}/{repo}/contents/{folder}"
-OWNER = "deacademy"
+OWNER = "deacademygit"
 REPO = "project-data"
 FOLDER = "snowpark-data" # Specify the folder within the repo
 HEADERS = {"Accept": "application/vnd.github.v3+json"}
@@ -19,7 +19,7 @@ s3 = boto3.client('s3')
 def fetch_github_files():
     """Fetches file details from Github folder."""
     url = GITHUB_REPO.format(owner=OWNER, repo=REPO, folder=FOLDER)
-    response = requests.get(url, headers=HEADERS)
+    response = requests.get(url, headers=HEADERS, timeout=15)
 
     if response.status_code == 200:
         return response.json() # Returns a list of files in the folder
@@ -29,7 +29,7 @@ def fetch_github_files():
 
 def upload_to_s3(file_url, file_name):
     """Downloads file from Github and uploads it to S3."""
-    response = requests.get(file_url)
+    response = requests.get(file_url, headers=HEADERS)
     if response.status_code == 200:
         s3.upload_fileobj(BytesIO(response.content), BUCKET_NAME, file_name)
         print(f"uploaded {file_name} to S3 bucket {BUCKET_NAME}")
