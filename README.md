@@ -1,4 +1,3 @@
-# AWS_S3_GLUE_SNOWFLAKE_ELT_PIPELINE
 ![alt text](https://github.com/kanweitech/glue_s3_snowflake/blob/main/images/glue.png)
 
 ### Objective
