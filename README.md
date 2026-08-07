@@ -25,6 +25,14 @@ The sales order files are stored in a Github repository, with different formats 
 ![alt text](https://github.com/kanweitech/glue_s3_snowflake/blob/main/images/s3_bucket_with_data.png)
 
 **2. Data Loading into Snowflake (Snowpark and Staging Schema)**
+- Set up warehouse, Database, Schema and Tables in snowflake
+
+![alt text](https://github.com/kanweitech/glue_s3_snowflake/blob/main/images/snowpark_warehouse_created.png)
+
+- **STAGING** schema created for data ingestion from S3
+
+![alt text](https://github.com/kanweitech/glue_s3_snowflake/blob/main/images/snowflake_staging_schema.png)
+
 - Using Snowpark, the data will ingested from S3 into snowflake.
 - the files will be loaded into their respective tables under the **STAGING** schema and using the **COPY** command.
 - After initial validation, the data will be moved from **STAGING** schema into **RAW** schema.
